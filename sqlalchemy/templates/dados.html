@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+        <link rel="icon" type="img/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+        <link rel="icon" type="img/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+        <link rel ="manifest" href="/static/img/site.webmanifest">
+        <title>Cadastro de pessoas</title>
+    </head>
+    <body style="background-color: cadetblue;">
+        <h3 style="background-color: lightgray; color: cornflowerblue; text-align: center;">Dados do Cadastro de Pessoa</h3>
+        <hr/>
+
+        {%- for category, message in get_flashed_messages(with_categories = true) %}
+            <div class = "alert alert-danger">
+                {{ message }}
+            </div>
+        {%- endfor %}
+
+        <form action="{{ request.path }}" method="POST">
+            <label for="nome">Nome</label><br>
+            <input type="text" name="nome" placeholder="Nome" /><br><br>
+            <label for="email">E-mail</label><br>
+            <input type="text" name="email" placeholder="E-mail" /><br><br>
+            <label for="telefone">Telefone</label><br>
+            <input type="text" name="telefone" placeholder="Telefone" /><br><br>
+            <label for="nascimento">Data de Nascimento</label><br>
+            <input type="text" name="nascimento" placeholder="Data de Nascimento" /><br><br>
+            <input type="submit" value="Submit" /><br><br>
+            
+        </form>
+    </body>
+</html>

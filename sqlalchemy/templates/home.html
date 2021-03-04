@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+        <link rel="icon" type="img/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+        <link rel="icon" type="img/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+        <link rel ="manifest" href="/static/img/site.webmanifest">
+        <title>Cadastro de Pessoa</title>
+    </head>
+    <body style="background-color: cadetblue;">
+        <h3 style="background-color: lightgray; color: cornflowerblue; text-align: center;">
+            <a href="{{ url_for('home') }}">Pessoas</a>
+        </h3>
+        <hr/>
+        {%- for message in get_flashed_messages() %}
+            {{ message }}
+        {%- endfor %}
+
+        <h3 style="background-color: lightgray; color: cornflowerblue;">Pessoas - (<a href="{{ url_for('dados') }}">Adicione uma pessoa</a>)</h3>
+
+        <table style="border: dotted; text-align: center; color: cornflowerblue; background-color: lightgray;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Data de Nascimento </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for pessoa in persons %}
+                    <tr>
+                        <form action="{{ url_for('delete')  }}" method="POST">  
+                        <td><input type="hidden" name="pessoa_id" value="{{ pessoa.pessoa_id }}"/> {{ pessoa.pessoa_id }} </td>
+                        <td>{{ pessoa.nome }}</td>
+                        <td>{{ pessoa.email }}</td>
+                        <td>{{ pessoa.telefone }}</td>
+                        <td>{{ pessoa.nascimento }}</td>
+                        <td><input type="submit" value="Delete"></td>
+                        </form>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+    </body>
+</html>
